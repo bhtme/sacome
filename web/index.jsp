@@ -1,4 +1,8 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:remove scope="session" var="novoMedico" />
+
 <html>
     <head>
         <title>SACoMe</title>
@@ -7,8 +11,8 @@
         <link rel="stylesheet" type="text/css" href="estilo.css" />  
     </head>
     <body>
-        <span>Sistema de Agendamento de Consultas Médicas</span>
-        <a href="/listaMedicos" class="bbt">Listar Médicos</a>
+        <span>Sistema de Agendamento de Consultas MÃ©dicas</span>
+        <a href="/listaMedicos" class="bbt">Listar MÃ©dicos</a>
         <div>
             <span>Acesso Paciente</span>
             <form method="post">
@@ -18,7 +22,7 @@
             </form>
         </div>
         <div>
-            <span>Acesso Médico</span>
+            <span>Acesso MÃ©dico</span>
             <form method="post">
                 <input type="text" name="crm" id="med-crm" placeholder="CRM" />
                 <input type="password" name="senha" id="med-senha" placeholder="Senha"/>
@@ -26,7 +30,7 @@
             </form>
         </div>
         <div>
-             <a href="addMedicoForm.jsp">Adicionar Médico</a><br/>
+             <a href="addMedicoForm.jsp">Adicionar MÃ©dico</a><br/>
              <a href="addPacienteForm.jsp">Adicionar Paciente</a><br/>
         </div>
     </body>
