@@ -51,7 +51,7 @@ public class AdminsDAO {
     }
 
 
-    public Admins buscarUsuario(int id) throws SQLException, NamingException {
+    public Admins buscarAdmin(int id) throws SQLException, NamingException {
         try (Connection con = dataSource.getConnection();
                 PreparedStatement ps = con.prepareStatement(BUSCAR_ADMINS_SQL)) {
             ps.setInt(1, id);
