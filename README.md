@@ -2,12 +2,15 @@
 ## Atividade Avaliativa 1 - 20680 - TURMA B - Quinta-feira
 ## Sistema para agendamento de consultas médicas
 
-O sistema deve possuir um cadastro de pacientes, com os seguintes dados: CPF,
-nome, senha, telefone, sexo e data de nascimento.
-O sistema deve possuir um cadastro de médicos, com os seguintes dados: CRM,
-nome, senha e especialidade.
+O sistema deve possuir um cadastro de pacientes, com os seguintes dados: 
+#### CPF, nome, senha, telefone, sexo e data de nascimento.
+
+O sistema deve possuir um cadastro de médicos, com os seguintes dados: 
+#### CRM, nome, senha e especialidade.
+
 O sistema deve possuir um cadastro de consultas, com os seguintes dados: CPF do
 paciente, CRM do médico e data do exame.
+
 O sistema deve atender aos seguintes requisitos:
 - R1: Cadastro de médicos (requer login de administrador)
 - R2: Cadastro de pacientes (requer login de administrador)
