@@ -4,9 +4,17 @@
         <servlet-name>AddMedicoServlet</servlet-name>
         <servlet-class>sacome.servlets.AddMedicoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GravarMedicoServlet</servlet-name>
+        <servlet-class>sacome.servlets.GravarMedicoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
         <url-pattern>/AddMedicoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GravarMedicoServlet</servlet-name>
+        <url-pattern>/GravarMedicoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -11,6 +11,10 @@
         <link rel="stylesheet" type="text/css" href="estilo.css" />  
     </head>
     <body>
+        <c:if test="${!empty mensagem}">
+            ${mensagem}
+            <hr>
+        </c:if>
         <span>Sistema de Agendamento de Consultas Médicas</span>
         <a href="/listaMedicos" class="bbt">Listar Médicos</a>
         <div>
