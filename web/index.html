@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SACoMe</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="estilo.css" />  
+    </head>
+    <body>
+        <span>Sistema de Agendamento de Consultas Médicas</span>
+        <a href="/listaMedicos" class="bbt">Listar Médicos</a>
+        <div>
+            <span>acesso Pacientes</span>
+            <form method="post">
+                <input type="text" name="cpf" id="pac-cpf" placeholder="CPF" />
+                <input type="password" name="senha" id="pac-senha" placeholder="Senha"/>
+                <input type="submit" name="login" id="pac-login" value="acessar" />
+            </form>
+        </div>
+        <div>
+            <span>acesso Médicos</span>
+            <form method="post">
+                <input type="text" name="crm" id="med-crm" placeholder="CRM" />
+                <input type="password" name="senha" id="med-senha" placeholder="Senha"/>
+                <input type="submit" name="login" id="med-login" value="acessar" />
+            </form>
+        </div>
+    </body>
+</html>
