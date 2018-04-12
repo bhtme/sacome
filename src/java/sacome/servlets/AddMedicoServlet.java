@@ -6,7 +6,7 @@
 package sacome.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +32,13 @@ public class AddMedicoServlet extends HttpServlet {
             // http://commons.apache.org/beanutils/
             BeanUtils.populate(npfb, request.getParameterMap());
             request.getSession().setAttribute("novoMedico", npfb);
-            request.getRequestDispatcher("confirmarMedico.jsp").forward(request, response);
+            List<String> mensagens = npfb.validar();
+            if (mensagens == null) {
+                request.getRequestDispatcher("confirmarMedico.jsp").forward(request, response);
+            } else {
+                request.setAttribute("mensagens", mensagens);
+                request.getRequestDispatcher("addMedicoForm.jsp").forward(request, response);
+            }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);

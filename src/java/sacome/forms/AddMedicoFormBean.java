@@ -5,6 +5,10 @@
  */
 package sacome.forms;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author tulio
@@ -45,5 +49,21 @@ public class AddMedicoFormBean {
         this.especialidade = especialidade;
     }
     
-    
+    public List<String> validar() {
+        List<String> mensagens = new ArrayList<String>();
+        if (nome.trim().length() == 0) {
+            mensagens.add("Nome não pode ser vazio!");
+        }
+        if (senha.trim().length() == 0) {
+            mensagens.add("Senha não pode ser vazio!");
+        }
+        if (crm.trim().length() == 0) {
+            mensagens.add("CRM não pode ser vazio!");
+        }
+        if (especialidade.trim().length() == 0) {
+            mensagens.add("Especialidade não pode ser vazio!");
+        }
+
+        return (mensagens.isEmpty() ? null : mensagens);
+    }
 }
