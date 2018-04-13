@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sacome.servlets;
 
 import java.io.IOException;
@@ -19,7 +14,7 @@ import sacome.forms.AddMedicoFormBean;
  *
  * @author tulio
  */
-@WebServlet(name = "NovoPalpiteServlet", urlPatterns = {"/NovoPalpiteServlet"})
+@WebServlet(name = "AddMedicoServlet", urlPatterns = {"/AddMedicoServlet"})
 public class AddMedicoServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

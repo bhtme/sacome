@@ -44,7 +44,7 @@ public class PacienteDAO {
             ps.setString(3, u.getSenha());
             ps.setString(4, u.getTelefone());
             ps.setDate(5, new java.sql.Date(u.getDataDeNascimento().getTime()));
-            ps.setString(6, u.getSexo());
+            ps.setString(6, u.getSexo().toUpperCase());
             ps.execute();
 
 
