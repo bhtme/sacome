@@ -16,6 +16,10 @@
         <servlet-name>GravarPacienteServlet</servlet-name>
         <servlet-class>sacome.servlets.GravarPacienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerMedicosServlet</servlet-name>
+        <servlet-class>sacome.servlets.VerMedicosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
         <url-pattern>/AddMedicoServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>GravarPacienteServlet</servlet-name>
         <url-pattern>/GravarPacienteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerMedicosServlet</servlet-name>
+        <url-pattern>/VerMedicosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
