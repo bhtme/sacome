@@ -28,11 +28,12 @@ public class MedicoDAO {
 
     private final static String LISTAR_MEDICO_SQL = "select"
             + " u.id as medicoId, u.crm, u.nome, u.senha, u.especialidade"
-            + " from Medico";
+            + " from Medico u";
 
 
     private final static String LISTAR_MEDICO_POR_ESPECIALIDADE_SQL = "select"
             + " u.id as medicoId, u.crm, u.nome, u.senha, u.especialidade"
+            + " from Medico u"
             + " where especialidade = ?";
 
 
@@ -68,11 +69,10 @@ public class MedicoDAO {
         try (Connection con = dataSource.getConnection();
                 PreparedStatement ps = con.prepareStatement(LISTAR_MEDICO_SQL)) {
 
-
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {  
                     Medico u = new Medico();
-                    u.setId(rs.getInt("usuarioId"));
+                    u.setId(rs.getInt("medicoId"));
                     u.setCrm(rs.getString("crm"));
                     u.setNome(rs.getString("nome"));
                     u.setSenha(rs.getString("senha"));
@@ -89,12 +89,11 @@ public class MedicoDAO {
         List<Medico> ret = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
                 PreparedStatement ps = con.prepareStatement(LISTAR_MEDICO_POR_ESPECIALIDADE_SQL)) {
-
             ps.setString(1, especialidade);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Medico u = new Medico();
-                    u.setId(rs.getInt("usuarioId"));
+                    u.setId(rs.getInt("medicoId"));
                     u.setCrm(rs.getString("crm"));
                     u.setNome(rs.getString("nome"));
                     u.setSenha(rs.getString("senha"));

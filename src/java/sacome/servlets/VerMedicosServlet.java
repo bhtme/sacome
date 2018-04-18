@@ -42,14 +42,14 @@ public class VerMedicosServlet extends HttpServlet {
      throws ServletException, IOException {
         MedicoDAO mdao = new MedicoDAO(dataSource);
         String especialidade = request.getParameter("especialidade");
-        List<Medico> todosPalpites = null;
+        List<Medico> todosMedicos = null;
         try {
             if (especialidade == null) {
-                todosPalpites = mdao.listarTodosMedicos();
+                todosMedicos = mdao.listarTodosMedicos();
             } else {
-                todosPalpites = mdao.listarTodosMedicosPorEspecialidade(especialidade);
+                todosMedicos = mdao.listarTodosMedicosPorEspecialidade(especialidade);
             }
-            request.setAttribute("listaMedicos", todosPalpites);
+            request.setAttribute("listaMedicos", todosMedicos);
             request.getRequestDispatcher("listaMedicos.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
