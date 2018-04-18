@@ -16,7 +16,7 @@
             ${mensagem}
             <hr>
         </c:if>
-        <span>Sistema de Agendamento de Consultas Médicas</span>
+        <h1>Sistema de Agendamento de Consultas Médicas</h1>
         <div>
              <a href="addMedicoForm.jsp">Adicionar Médico</a><br/>
              <a href="addPacienteForm.jsp">Adicionar Paciente</a><br/>

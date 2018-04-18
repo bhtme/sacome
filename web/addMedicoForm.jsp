@@ -28,7 +28,21 @@
                 CRM: <input name="crm" type="text" value="${sessionScope.novoMedico.crm}" /><br/>
                 Nome: <input name="nome" type="text" value="${sessionScope.novoMedico.nome}" /><br/>
                 Senha: <input name="senha" type="text" value="${sessionScope.novoMedico.senha}" /><br/>
-                Especialidade: <input name="especialidade" type="text" value="${sessionScope.novoMedico.especialidade}" /><br/>
+                Especialidade: <br><select name="especialidade">
+                                <option value="none">--Especialidade--</option>
+                                <option value="Acupuntura">Acupuntura</option>
+                                <option value="Cardiologia">Cardiologia</option>
+                                <option value="Dermatologia">Dermatologia</option>
+                                <option value="Geriatria">Geriatria</option>
+                                <option value="Ginecologia">Ginecologia</option>
+                                <option value="Neurologia">Neurologia</option>
+                                <option value="Oftalmologia">Oftalmologia</option>
+                                <option value="Ortopedia">Ortopedia</option>
+                                <option value="Otorrinolaringologia">Otorrinolaringologia</option>
+                                <option value="Pediatria">Pediatria</option>    
+                                <option value="Pneumologia">Pneumologia</option>
+                                <option value="Urologia">Urologia</option>           
+                                </select> <br/>
                 <input type="submit" value="Enviar"/>
             </form>
         </div>
