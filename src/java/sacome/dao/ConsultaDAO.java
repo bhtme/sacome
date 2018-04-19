@@ -21,7 +21,7 @@ import sacome.beans.Consulta;
  * @author tulio
  */
 public class ConsultaDAO {
-    private final static String CRIAR_CONSULTA_SQL = "insert into Medico"
+    private final static String CRIAR_CONSULTA_SQL = "insert into Consulta"
             + " (cpf, crm, dataconsulta)"
             + " values (?,?,?)";
 
@@ -46,7 +46,7 @@ public class ConsultaDAO {
 
     public Consulta gravarConsulta(Consulta p) throws SQLException, NamingException {
         try (Connection con = dataSource.getConnection();
-                PreparedStatement ps = con.prepareStatement(CRIAR_CONSULTA_SQL, Statement.RETURN_GENERATED_KEYS);) {
+            PreparedStatement ps = con.prepareStatement(CRIAR_CONSULTA_SQL, Statement.RETURN_GENERATED_KEYS);) {
             ps.setString(1, p.getCpf());
             ps.setString(2, p.getCrm());
             ps.setDate(3, new java.sql.Date(p.getDataConsulta().getTime()));
