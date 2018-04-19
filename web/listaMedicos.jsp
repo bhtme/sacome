@@ -4,8 +4,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sistema de Agendamento de Consultas Medicas</title>
-        <link rel="stylesheet" type="text/css" href="estilo.css" />
+        <title>SACoMe - Encontre um Médico</title>
+        <link rel="stylesheet" type="text/css" href="default.css" />
     </head>
     <body>
         <h1>Listagem de Médicos cadastrados.</h1>

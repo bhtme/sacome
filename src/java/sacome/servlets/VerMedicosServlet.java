@@ -22,7 +22,7 @@ import sacome.dao.MedicoDAO;
  *
  * @author tulio
  */
-@WebServlet(name = "VerMedicosServlet", urlPatterns = {"/VerMedicosServlet"})
+@WebServlet(name = "VerMedicosServlet", urlPatterns = {"/listaMedicos"})
 public class VerMedicosServlet extends HttpServlet {
 
     /**
@@ -50,11 +50,11 @@ public class VerMedicosServlet extends HttpServlet {
                 todosMedicos = mdao.listarTodosMedicosPorEspecialidade(especialidade);
             }
             request.setAttribute("listaMedicos", todosMedicos);
-            request.getRequestDispatcher("listaMedicos.jsp").forward(request, response);
+            request.getRequestDispatcher("/listaMedicos.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
 
 

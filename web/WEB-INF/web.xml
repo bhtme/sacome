@@ -22,27 +22,30 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
-        <url-pattern>/AddMedicoServlet</url-pattern>
+        <url-pattern>/admin/addMedico</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GravarMedicoServlet</servlet-name>
-        <url-pattern>/GravarMedicoServlet</url-pattern>
+        <url-pattern>/admin/gravarMedico</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddPacienteServlet</servlet-name>
-        <url-pattern>/AddPacienteServlet</url-pattern>
+        <url-pattern>/admin/addPaciente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GravarPacienteServlet</servlet-name>
-        <url-pattern>/GravarPacienteServlet</url-pattern>
+        <url-pattern>/admin/gravarPaciente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VerMedicosServlet</servlet-name>
-        <url-pattern>/VerMedicosServlet</url-pattern>
+        <url-pattern>/listaMedicos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+       <location>/erro.jsp</location>
+     </error-page>
 </web-app>

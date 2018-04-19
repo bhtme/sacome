@@ -14,7 +14,7 @@ import sacome.forms.AddPacienteFormBean;
  *
  * @author tulio
  */
-@WebServlet(name = "AddPacienteServlet", urlPatterns = {"/AddPacienteServlet"})
+@WebServlet(name = "AddPacienteServlet", urlPatterns = {"/admin/addPaciente"})
 public class AddPacienteServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +37,7 @@ public class AddPacienteServlet extends HttpServlet {
 
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
 
 

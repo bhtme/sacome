@@ -14,7 +14,7 @@ import sacome.forms.AddMedicoFormBean;
  *
  * @author tulio
  */
-@WebServlet(name = "AddMedicoServlet", urlPatterns = {"/AddMedicoServlet"})
+@WebServlet(name = "AddMedicoServlet", urlPatterns = {"/admin/addMedico"})
 public class AddMedicoServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,7 +36,7 @@ public class AddMedicoServlet extends HttpServlet {
             }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
     }
 
