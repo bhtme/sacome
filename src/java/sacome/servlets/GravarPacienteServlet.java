@@ -19,7 +19,7 @@ import sacome.dao.PacienteDAO;
 import sacome.forms.AddPacienteFormBean;
 
 
-@WebServlet(name = "GravarPacienteServlet", urlPatterns = {"/GravarPacienteServlet"})
+@WebServlet(name = "GravarPacienteServlet", urlPatterns = {"/admin/gravarPaciente"})
 public class GravarPacienteServlet extends HttpServlet {
     
     @Resource(name="jdbc/sacomeDBlocal")
@@ -33,7 +33,7 @@ public class GravarPacienteServlet extends HttpServlet {
 
         PacienteDAO udao = new PacienteDAO(dataSource);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dataNascimento = null;
         try {
             dataNascimento = sdf.parse(npfb.getDataDeNascimento());
