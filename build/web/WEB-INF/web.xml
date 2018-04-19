@@ -24,6 +24,10 @@
         <servlet-name>AdminLoginServlet</servlet-name>
         <servlet-class>sacome.servlets.AdminLoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PacienteLoginServlet</servlet-name>
+        <servlet-class>sacome.servlets.PacienteLoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
         <url-pattern>/AddMedicoServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>AdminLoginServlet</servlet-name>
         <url-pattern>/AdminLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PacienteLoginServlet</servlet-name>
+        <url-pattern>/PacienteLoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

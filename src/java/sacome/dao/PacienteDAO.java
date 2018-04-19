@@ -29,6 +29,11 @@ public class PacienteDAO {
             + " from paciente"
             + " where cpf=?";
     
+    private final static String PACIENTE_VALIDAR_LOGIN_SQL = "select"
+        + " id, nome, cpf, senha"
+        + " from paciente"
+        + " where cpf=? and senha=?";
+    
     DataSource dataSource;
 
 
@@ -38,7 +43,7 @@ public class PacienteDAO {
     
     public Paciente gravarPaciente(Paciente u) throws SQLException, NamingException {
         try (Connection con = dataSource.getConnection();
-                PreparedStatement ps = con.prepareStatement(CRIAR_PACIENTE_SQL, Statement.RETURN_GENERATED_KEYS);) {
+            PreparedStatement ps = con.prepareStatement(CRIAR_PACIENTE_SQL, Statement.RETURN_GENERATED_KEYS);) {
             ps.setString(1, u.getCpf());
             ps.setString(2, u.getNome());
             ps.setString(3, u.getSenha());
@@ -59,9 +64,8 @@ public class PacienteDAO {
 
     public Paciente buscarPaciente(int cpf) throws SQLException, NamingException {
         try (Connection con = dataSource.getConnection();
-                PreparedStatement ps = con.prepareStatement(BUSCAR_PACIENTE_SQL)) {
+            PreparedStatement ps = con.prepareStatement(BUSCAR_PACIENTE_SQL)) {
             ps.setInt(1, cpf);
-
 
             try (ResultSet rs = ps.executeQuery()) {
                 rs.next();
@@ -75,6 +79,25 @@ public class PacienteDAO {
                 u.setSexo(rs.getString("sexo"));
                 return u;
             }
+        }
+    }
+    
+    public Boolean validarPacienteLogin(String cpf, String senha) throws SQLException, NamingException {
+        boolean st = false;
+        try (Connection con = dataSource.getConnection();
+                          
+            PreparedStatement ps = con.prepareStatement(PACIENTE_VALIDAR_LOGIN_SQL)) {
+            ps.setString(1, cpf);
+            ps.setString(2, senha); 
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                st = rs.next();
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+          
+            return st;
         }
     }
 }
