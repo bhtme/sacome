@@ -5,6 +5,8 @@
  */
 package sacome.beans;
 
+import java.util.Date;
+
 /**
  *
  * @author tulio
@@ -12,6 +14,15 @@ package sacome.beans;
 public class Consulta {
     private int id;
     private String cpf, crm;
+    private Date dataConsulta;
+
+    public Date getDataConsulta() {
+        return dataConsulta;
+    }
+
+    public void setDataConsulta(Date dataConsulta) {
+        this.dataConsulta = dataConsulta;
+    }
 
     public int getId() {
         return id;
