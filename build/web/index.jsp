@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:remove scope="session" var="novoMedico" />
 <c:remove scope="session" var="novoPaciente" />
+<c:remove scope="session" var="adminInvalid" />
 
 <html>
     <head>
@@ -21,6 +22,9 @@
             <a href="addMedicoForm.jsp">Adicionar Médico</a><br/><br>
             <a href="addPacienteForm.jsp">Adicionar Paciente</a><br/><br>
             <a href="VerMedicosServlet">Buscar Médicos cadastrados.</a><br/>
+        </div>
+        <div>
+            <a href="adminLogin.jsp">Login Administrador</a><br/><br>
         </div>
     </body>
 </html>

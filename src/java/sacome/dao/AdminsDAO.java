@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
@@ -21,10 +23,10 @@ public class AdminsDAO {
             + " values (?,?,?)";
 
 
-    private final static String BUSCAR_ADMINS_SQL = "select"
+    private final static String ADMIN_VALIDAR_LOGIN_SQL = "select"
             + " id, nome, login, senha"
             + " from admins"
-            + " where id=?";
+            + " where login=? and senha=?";
     
     DataSource dataSource;
 
@@ -50,22 +52,26 @@ public class AdminsDAO {
         return u;
     }
 
-
-    public Admins buscarAdmin(int id) throws SQLException, NamingException {
+    public Boolean validarAdminLogin(String login, String senha) throws SQLException, NamingException {
+        boolean st = false;
         try (Connection con = dataSource.getConnection();
-                PreparedStatement ps = con.prepareStatement(BUSCAR_ADMINS_SQL)) {
-            ps.setInt(1, id);
-
-
+                
+                
+            PreparedStatement ps = con.prepareStatement(ADMIN_VALIDAR_LOGIN_SQL)) {
+            ps.setString(1, login);
+            ps.setString(2, senha); 
+            
             try (ResultSet rs = ps.executeQuery()) {
-                rs.next();
-                Admins u = new Admins();
-                u.setId(rs.getInt("id"));
-                u.setNome(rs.getString("nome"));
-                u.setLogin(rs.getString("login"));
-                u.setSenha(rs.getString("senha"));
-                return u;
+                st = rs.next();
+
+            } catch (Exception e){
+                e.printStackTrace();
             }
+          
+            return st;
         }
     }
+    
+    
+    
 }
