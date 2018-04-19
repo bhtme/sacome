@@ -7,13 +7,22 @@ package sacome.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
+import sacome.beans.Consulta;
+import sacome.dao.ConsultaDAO;
 import sacome.forms.AddConsultaFormBean;
+
 
 /**
  *
@@ -22,6 +31,9 @@ import sacome.forms.AddConsultaFormBean;
 @WebServlet(name = "AddConsultaServlet", urlPatterns = {"/paciente/addConsulta"})
 public class AddConsultaServlet extends HttpServlet {
 
+    @Resource(name="jdbc/sacomeDBlocal")
+    DataSource dataSource;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -32,7 +44,29 @@ public class AddConsultaServlet extends HttpServlet {
             // http://commons.apache.org/beanutils/
             BeanUtils.populate(npfb, request.getParameterMap());
             request.getSession().setAttribute("novaConsulta", npfb);
+            
+            ConsultaDAO cdao = new ConsultaDAO(dataSource);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date dataConsulta = null;
+            dataConsulta = sdf.parse(npfb.getDataConsulta());
+            List<String> mensagens = new ArrayList<>();
+             
+            List<Consulta> consultasmed = cdao.buscarConsultaMedico(npfb.getCrm(), dataConsulta);
+            if(consultasmed != null){
+                mensagens.add("Médico já possui uma consulta neste horário.");
+            }
+            
+            List<Consulta> consultaspac = cdao.buscarConsultaPaciente(npfb.getCpf(), dataConsulta);
+            if(consultaspac != null){
+                mensagens.add("Você já possui uma consulta neste horário.");
+            }
+            
+            if (mensagens.isEmpty()) {
             request.getRequestDispatcher("/confirmarConsulta.jsp").forward(request, response);
+            } else {
+                request.setAttribute("mensagens", mensagens);
+                request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
+            }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());
             request.getRequestDispatcher("/erro.jsp").forward(request, response);
