@@ -43,10 +43,12 @@ public class AdminLoginServlet extends HttpServlet {
             AdminsDAO adao = new AdminsDAO(dataSource);           
             
             if (adao.validarAdminLogin(login, senha)){
+                request.setAttribute("adminValid", true);
                 request.setAttribute("adminInvalid", false);
                 request.getRequestDispatcher("dashboardAdmin.jsp").forward(request, response);
             } else {
                 request.setAttribute("adminInvalid", true);
+                request.setAttribute("adminValid", false);
                 request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
             }
       

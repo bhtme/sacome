@@ -1,9 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:remove scope="session" var="novoMedico" />
-<c:remove scope="session" var="novoPaciente" />
-<c:remove scope="session" var="adminValid" />
 
 <html>
     <head>
@@ -13,18 +10,23 @@
         <link rel="stylesheet" type="text/css" href="estilo.css" />  
     </head>
     <body>
-        <c:if test="${!empty mensagem}">
-            ${mensagem}
-            <hr>
-        </c:if>
-        <h1>Sistema de Agendamento de Consultas Médicas</h1>
+            <h1>Sistema de Agendamento de Consultas Médicas</h1><br>
+            <h2>Área de Administração</h2>
         <div>
+            <c:if test="${requestScope.adminValid}">
+            <div>
             <a href="addMedicoForm.jsp">Adicionar Médico</a><br/><br>
             <a href="addPacienteForm.jsp">Adicionar Paciente</a><br/><br>
-            <a href="VerMedicosServlet">Buscar Médicos cadastrados.</a><br/>
-        </div>
-        <div>
-            <a href="adminLogin.jsp">Login Administrador</a><br/><br>
+            </div>
+            </c:if>
+            <c:if test="${!requestScope.adminValid}">
+                <h3>Dashboard da Administração</h3>
+            <hr>
+            <div>
+                <span>Você precisa estar logado para ver esta página!</span><br/>
+                <br/><a href="adminLogin.jsp">Login</a><br/><br>
+            </div>
+            </c:if>
         </div>
     </body>
 </html>
