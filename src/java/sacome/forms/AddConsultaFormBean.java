@@ -5,6 +5,9 @@
  */
 package sacome.forms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author tulio
@@ -13,6 +16,14 @@ public class AddConsultaFormBean {
     
     private String cpf, crm, dataConsulta;
 
+    public List<String> validar() {
+        List<String> mensagens = new ArrayList<String>();
+        
+        
+        return (mensagens.isEmpty() ? null : mensagens);
+    }
+    
+    
     public String getCpf() {
         return cpf;
     }

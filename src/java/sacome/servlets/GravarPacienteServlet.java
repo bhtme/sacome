@@ -38,7 +38,7 @@ public class GravarPacienteServlet extends HttpServlet {
         try {
             dataNascimento = sdf.parse(npfb.getDataDeNascimento());
         } catch (ParseException e) {
-            request.setAttribute("mensagem", e.getLocalizedMessage());
+            request.setAttribute("pac_mensagens", e.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
         try {
@@ -51,8 +51,8 @@ public class GravarPacienteServlet extends HttpServlet {
             u.setSexo(npfb.getSexo());
             u = udao.gravarPaciente(u);
            
-            request.setAttribute("mensagem", "Paciente cadastrado com sucesso!");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.setAttribute("pac_mensagens", "Paciente cadastrado com sucesso!");
+            request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());

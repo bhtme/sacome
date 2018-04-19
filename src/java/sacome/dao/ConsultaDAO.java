@@ -26,7 +26,10 @@ public class ConsultaDAO {
     private final static String CRIAR_CONSULTA_SQL = "insert into Consulta"
             + " (cpf, crm, dataconsulta)"
             + " values (?,?,?)";
-
+    
+    private final static String BUSCAR_CONSULTA_MEDICO = "select"
+            + " "
+            + " values (?,?,?)";
 
     private final static String LISTAR_CONSULTA_POR_PACIENTE_SQL = "select"
             + " c.id as consultaId, c.cpf, c.crm, c.dataconsulta, m.nome"

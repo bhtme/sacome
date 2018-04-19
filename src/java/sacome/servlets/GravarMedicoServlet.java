@@ -18,7 +18,7 @@ import sacome.forms.AddMedicoFormBean;
  * @author tulio
  */
 
-@WebServlet(name = "GravarMedicoServlet", urlPatterns = {"/GravarMedicoServlet"})
+@WebServlet(name = "GravarMedicoServlet", urlPatterns = {"/admin/gravarMedico"})
 public class GravarMedicoServlet extends HttpServlet {
 
     @Resource(name="jdbc/sacomeDBlocal")
@@ -40,11 +40,11 @@ public class GravarMedicoServlet extends HttpServlet {
             u.setEspecialidade(npfb.getEspecialidade());
             u = udao.gravarMedico(u);
             
-            request.setAttribute("mensagem", "Médico cadastrado com sucesso!");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.setAttribute("med_mensagens", "Médico cadastrado com sucesso!");
+            request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("mensagem", e.getLocalizedMessage());
+            request.setAttribute("med_mensagens", e.getLocalizedMessage());
             request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
     }
