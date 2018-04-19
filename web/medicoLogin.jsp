@@ -18,7 +18,7 @@
                     </c:otherwise>
                 </c:choose>
                 <hr>
-                <form method="post" class="boxForm" id="medicoForm">
+                <form method="post" action="${pageContext.request.contextPath}/medico" class="boxForm" id="medicoForm">
                     <label for="crm">CRM:</label>
                     <input type="text" name="crm" id="crm" />
                     <label for="senha">Senha:</label>

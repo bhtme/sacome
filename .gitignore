@@ -1,9 +1,3 @@
-/dist/
-/build/
-/nbproject/
-build/web/WEB-INF/web.xml
-build/web/index.jsp
-web/index.jsp
-web/index_2.jsp
-web/index_2.jsp
-/web/index_1.jsp
+/dist/*
+/build/*
+/nbproject/*

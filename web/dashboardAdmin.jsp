@@ -9,7 +9,7 @@
         <div class="box pBox">
             <div>Área Administrativa</div>
             <div class="btts">
-                <a href="/sair">Terminar Sessão</a>
+                <a href="${pageContext.request.contextPath}/admin?sair">Terminar Sessão</a>
             </div>
         </div>
         <div class="box pBox">

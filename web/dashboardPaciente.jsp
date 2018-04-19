@@ -9,7 +9,7 @@
         <div class="box pBox">
             <div>Área do Paciente</div>
             <div class="btts">
-                <a href="/sair">Terminar Sessão</a>
+                <a href="${pageContext.request.contextPath}/paciente?sair">Terminar Sessão</a>
             </div>
         </div>
         <div class="box pBox">
@@ -27,7 +27,7 @@
                     <label for="data">Data:</label>
                     <input id="data" name="data" type="date" value="${sessionScope.novaConsulta.data}" />
                     <label for="crm">CRM: <a href="${pageContext.request.contextPath}/listaMedicos">(clique para acessar a lista)</a></label>
-                    <input id="crm" name="crm" type="text" value="${sessionScope.novaConsulta.crm || param.crm}" />
+                    <input id="crm" name="crm" type="text" value="${sessionScope.novaConsulta.crm || param.crm || ""}" />
                     <input type="submit" value="Agendar Consulta"/>
                 </form>
             </div>

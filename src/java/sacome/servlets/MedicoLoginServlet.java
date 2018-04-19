@@ -41,7 +41,11 @@ public class MedicoLoginServlet extends HttpServlet {
             String login = request.getParameter("login");
             String crm = request.getParameter("crm");
             String senha = request.getParameter("senha");
-            MedicoDAO mdao = new MedicoDAO(dataSource);           
+            MedicoDAO mdao = new MedicoDAO(dataSource);  
+            
+            if(request.getParameter("sair") != null) {
+                request.getSession().removeAttribute("acessoMedico");
+            }
             
             if(login == null) {
                 String acesso = (String) request.getSession().getAttribute("acessoMedico");

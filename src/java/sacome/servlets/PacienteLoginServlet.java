@@ -42,7 +42,11 @@ public class PacienteLoginServlet extends HttpServlet {
             String login = request.getParameter("login");
             String cpf = request.getParameter("cpf");
             String senha = request.getParameter("senha");
-            PacienteDAO pdao = new PacienteDAO(dataSource);           
+            PacienteDAO pdao = new PacienteDAO(dataSource); 
+            
+            if(request.getParameter("sair") != null) {
+                request.getSession().removeAttribute("acessoPaciente");
+            }
             
             if(login == null) {
                 String acesso = (String) request.getSession().getAttribute("acessoPaciente");

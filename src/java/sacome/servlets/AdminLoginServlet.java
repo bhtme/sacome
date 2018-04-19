@@ -43,6 +43,10 @@ public class AdminLoginServlet extends HttpServlet {
             String senha = request.getParameter("senha");
             AdminsDAO adao = new AdminsDAO(dataSource);           
             
+            if(request.getParameter("sair") != null) {
+                request.getSession().removeAttribute("acessoAdmin");
+            }
+            
             if(login == null) {
                 String acesso = (String) request.getSession().getAttribute("acessoAdmin");
                 if("ok".equals(acesso)) {

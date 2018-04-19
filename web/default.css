@@ -26,6 +26,8 @@ div#top-bar {
     color: #fff;
     text-align: left;
     padding: 0px 12px;
+    user-select: none;
+    -moz-user-select: none;
 }
 
 div#top-bar>span {
@@ -46,6 +48,8 @@ div#top-bar>a {
 
 div.btts {
     text-align: center;
+    user-select: none;
+    -moz-user-select: none;
 }
 
 div.btts>a {
@@ -89,6 +93,8 @@ div.box>div:first-child {
     padding-left: 10px;
     font-size: 24px;
     cursor: default;
+    user-select: none;
+    -moz-user-select: none;
 }
 
 div.box>div:last-child {

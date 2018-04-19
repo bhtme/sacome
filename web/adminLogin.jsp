@@ -18,7 +18,7 @@
                     </c:otherwise>
                 </c:choose>
                 <hr>
-                <form method="post" class="boxForm" id="adminForm">
+                <form method="post" action="${pageContext.request.contextPath}/admin" class="boxForm" id="adminForm">
                     <label for="usuario">Usuário:</label>
                     <input type="text" name="usuario" id="usuario" />
                     <label for="senha">Senha:</label>
