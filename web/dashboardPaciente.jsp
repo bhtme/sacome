@@ -11,18 +11,18 @@
     </head>
     <body>
             <h1>Sistema de Agendamento de Consultas Médicas</h1><br>
-            <h2>Área de Administração</h2>
+            <h2>Área do Paciente</h2>
         <div>
-            <c:if test="${requestScope.adminValid}">
+            <c:if test="${requestScope.userValid}">
             <div>
-            <a href="addMedicoForm.jsp">Adicionar Médico</a><br/><br>
-            <a href="addPacienteForm.jsp">Adicionar Paciente</a><br/><br>
+            <a href="addConsultaForm.jsp">Agendar consulta</a><br/><br>
+            <a href="listaConsultas.jsp">Minhas Consultas</a><br/><br>
             </div>
             </c:if>
-            <c:if test="${!requestScope.adminValid}">
+            <c:if test="${!requestScope.userValid}">
             <div>
                 <span>Você precisa estar logado para ver esta página!</span><br/>
-                <br/><a href="adminLogin.jsp">Login</a><br/><br>
+                <br/><a href="pacienteLogin.jsp">Login</a><br/><br>
             </div>
             </c:if>
         </div>
