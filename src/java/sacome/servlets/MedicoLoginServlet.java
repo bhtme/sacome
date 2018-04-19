@@ -49,6 +49,7 @@ public class MedicoLoginServlet extends HttpServlet {
             
             if(request.getParameter("sair") != null) {
                 request.getSession().removeAttribute("acessoMedico");
+                request.getSession().removeAttribute("crmMedico");
             }
             
             if(login == null) {
@@ -56,6 +57,7 @@ public class MedicoLoginServlet extends HttpServlet {
                 if("ok".equals(acesso)) {
                     request.setAttribute("docValid", true);
                     request.setAttribute("docInvalid", false);
+                    crm = (String) request.getSession().getAttribute("crmMedico");
                     todasConsultas = cdao.listarConsultasPorMedico(crm);
                     request.setAttribute("listaConsultas", todasConsultas);
                     request.getRequestDispatcher("/dashboardMedico.jsp").forward(request, response);
@@ -67,6 +69,7 @@ public class MedicoLoginServlet extends HttpServlet {
             }else{
                 if (mdao.validarMedicoLogin(crm, senha)){
                     request.getSession().setAttribute("acessoMedico", "ok");
+                    request.getSession().setAttribute("crmMedico", crm);
                     request.setAttribute("docValid", true);
                     request.setAttribute("docInvalid", false);
                     todasConsultas = cdao.listarConsultasPorMedico(crm);

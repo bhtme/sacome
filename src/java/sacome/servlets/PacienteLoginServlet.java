@@ -49,6 +49,7 @@ public class PacienteLoginServlet extends HttpServlet {
             
             if(request.getParameter("sair") != null) {
                 request.getSession().removeAttribute("acessoPaciente");
+                request.getSession().removeAttribute("cpfPaciente");
             }
             
             if(login == null) {
@@ -56,6 +57,7 @@ public class PacienteLoginServlet extends HttpServlet {
                 if("ok".equals(acesso)) {
                     request.setAttribute("userValid", true);
                     request.setAttribute("userInvalid", false);
+                    cpf = (String) request.getSession().getAttribute("cpfPaciente");
                     todasConsultas = cdao.listarConsultasPorPaciente(cpf);
                     request.setAttribute("listaConsultas", todasConsultas);
                     request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
@@ -67,6 +69,7 @@ public class PacienteLoginServlet extends HttpServlet {
             }else{
                 if (pdao.validarPacienteLogin(cpf, senha)){
                    request.getSession().setAttribute("acessoPaciente", "ok");
+                   request.getSession().setAttribute("cpfPaciente", cpf);
                    request.setAttribute("userValid", true);
                    request.setAttribute("userInvalid", false);
                    todasConsultas = cdao.listarConsultasPorPaciente(cpf);

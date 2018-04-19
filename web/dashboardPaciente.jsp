@@ -24,10 +24,11 @@
                     <hr>
                 </c:if>
                 <form action="${pageContext.request.contextPath}/paciente/addConsulta" method="post" class="boxForm">
+                    <input type="hidden" name="cpf" value="${sessionScope.cpfPaciente}"/>
                     <label for="data">Data:</label>
-                    <input id="data" name="dataConsulta" type="date" value="${sessionScope.novaConsulta.data}" />
+                    <input id="data" name="dataConsulta" type="date" value="${sessionScope.novaConsulta.dataConsulta}" />
                     <label for="crm">CRM: <a href="${pageContext.request.contextPath}/listaMedicos">(clique para acessar a lista)</a></label>
-                    <input id="crm" name="crm" type="text" value="${param.crm || sessionScope.novaConsulta.crm || ""}" />
+                    <input id="crm" name="crm" type="text" value="${(empty sessionScope.novaConsulta.crm)?param.crm:sessionScope.novaConsulta.crm}" />
                     <input type="submit" value="Agendar Consulta"/>
                 </form>
             </div>
