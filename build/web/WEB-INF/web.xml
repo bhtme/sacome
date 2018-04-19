@@ -32,6 +32,10 @@
         <servlet-name>MedicoLoginServlet</servlet-name>
         <servlet-class>sacome.servlets.MedicoLoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GravarConsultaServlet</servlet-name>
+        <servlet-class>sacome.servlets.GravarConsultaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
         <url-pattern>/admin/addMedico</url-pattern>
@@ -64,6 +68,10 @@
         <servlet-name>MedicoLoginServlet</servlet-name>
         <url-pattern>/medico</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GravarConsultaServlet</servlet-name>
+        <url-pattern>/GravarConsultaServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -71,6 +79,6 @@
     </session-config>
     <error-page>
         <error-code>404</error-code>
-       <location>/erro.jsp</location>
-     </error-page>
+        <location>/erro.jsp</location>
+    </error-page>
 </web-app>
