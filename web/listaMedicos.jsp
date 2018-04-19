@@ -36,14 +36,14 @@
                 <c:if test="${!empty requestScope.listaMedicos}">
                     <table>
                         <tr>
-                            <th class="esquerda">CRM</th>
+                            <th>CRM</th>
                             <th>Nome</th>
                             <th>Especialidade</th>
                             <th></th>
                         </tr>
                         <c:forEach items="${requestScope.listaMedicos}" var="medico">
                             <tr>
-                                <td class="esquerda">${medico.crm}</td>
+                                <td>${medico.crm}</td>
                                 <td>${medico.nome}</td>
                                 <td>${medico.especialidade}</td>
                                 <td>

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import sacome.beans.Consulta;
+import sacome.dao.ConsultaDAO;
 import sacome.dao.MedicoDAO;
 
 @WebServlet(name = "MedicoLoginServlet", urlPatterns = {"/medico"})
@@ -41,7 +43,9 @@ public class MedicoLoginServlet extends HttpServlet {
             String login = request.getParameter("login");
             String crm = request.getParameter("crm");
             String senha = request.getParameter("senha");
-            MedicoDAO mdao = new MedicoDAO(dataSource);  
+            MedicoDAO mdao = new MedicoDAO(dataSource);
+            ConsultaDAO cdao = new ConsultaDAO(dataSource);
+            List<Consulta> todasConsultas = null;
             
             if(request.getParameter("sair") != null) {
                 request.getSession().removeAttribute("acessoMedico");
@@ -52,6 +56,8 @@ public class MedicoLoginServlet extends HttpServlet {
                 if("ok".equals(acesso)) {
                     request.setAttribute("docValid", true);
                     request.setAttribute("docInvalid", false);
+                    todasConsultas = cdao.listarConsultasPorMedico(crm);
+                    request.setAttribute("listaConsultas", todasConsultas);
                     request.getRequestDispatcher("/dashboardMedico.jsp").forward(request, response);
                 }else{
                     request.setAttribute("docInvalid", false);
@@ -63,6 +69,8 @@ public class MedicoLoginServlet extends HttpServlet {
                     request.getSession().setAttribute("acessoMedico", "ok");
                     request.setAttribute("docValid", true);
                     request.setAttribute("docInvalid", false);
+                    todasConsultas = cdao.listarConsultasPorMedico(crm);
+                    request.setAttribute("listaConsultas", todasConsultas);
                     request.getRequestDispatcher("/dashboardMedico.jsp").forward(request, response);
                 } else {
                     request.setAttribute("docInvalid", true);

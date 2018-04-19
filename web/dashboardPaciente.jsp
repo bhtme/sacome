@@ -35,7 +35,25 @@
         <div class="box pBox">
             <div>Minhas Consultas</div>
             <div>
-                Nenhuma consulta encontrada
+                <c:if test="${empty requestScope.listaConsultas}">
+                    Nenhuma consulta encontrada
+                </c:if>
+                <c:if test="${!empty requestScope.listaConsultas}">
+                    <table>
+                        <tr>
+                            <th>Médico</th>
+                            <th>CRM</th>
+                            <th>Data</th>
+                        </tr>
+                        <c:forEach items="${requestScope.listaConsultas}" var="consulta">
+                            <tr>
+                                <td>${consulta.medico.nome}</td>
+                                <td>${consulta.crm}</td>
+                                <td>${consulta.dataConsulta}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:if>
             </div>
         </div>
     </jsp:body>

@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import sacome.dao.AdminsDAO;
+import sacome.beans.Consulta;
+import sacome.dao.ConsultaDAO;
 import sacome.dao.PacienteDAO;
 
 @WebServlet(name = "PacienteLoginServlet", urlPatterns = {"/paciente"})
@@ -42,7 +43,9 @@ public class PacienteLoginServlet extends HttpServlet {
             String login = request.getParameter("login");
             String cpf = request.getParameter("cpf");
             String senha = request.getParameter("senha");
-            PacienteDAO pdao = new PacienteDAO(dataSource); 
+            PacienteDAO pdao = new PacienteDAO(dataSource);
+            ConsultaDAO cdao = new ConsultaDAO(dataSource);
+            List<Consulta> todasConsultas = null;
             
             if(request.getParameter("sair") != null) {
                 request.getSession().removeAttribute("acessoPaciente");
@@ -53,6 +56,8 @@ public class PacienteLoginServlet extends HttpServlet {
                 if("ok".equals(acesso)) {
                     request.setAttribute("userValid", true);
                     request.setAttribute("userInvalid", false);
+                    todasConsultas = cdao.listarConsultasPorPaciente(cpf);
+                    request.setAttribute("listaConsultas", todasConsultas);
                     request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
                 }else{
                     request.setAttribute("userInvalid", false);
@@ -64,6 +69,8 @@ public class PacienteLoginServlet extends HttpServlet {
                    request.getSession().setAttribute("acessoPaciente", "ok");
                    request.setAttribute("userValid", true);
                    request.setAttribute("userInvalid", false);
+                   todasConsultas = cdao.listarConsultasPorPaciente(cpf);
+                   request.setAttribute("listaConsultas", todasConsultas);
                    request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
                } else {
                    request.setAttribute("userInvalid", true);

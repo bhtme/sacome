@@ -15,6 +15,24 @@ public class Consulta {
     private int id;
     private String cpf, crm;
     private Date dataConsulta;
+    private Medico medico;
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+    private Paciente paciente;
 
     public Date getDataConsulta() {
         return dataConsulta;

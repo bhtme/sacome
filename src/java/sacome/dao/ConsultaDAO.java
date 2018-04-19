@@ -16,6 +16,8 @@ import java.util.List;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import sacome.beans.Consulta;
+import sacome.beans.Medico;
+import sacome.beans.Paciente;
 /**
  *
  * @author tulio
@@ -27,13 +29,13 @@ public class ConsultaDAO {
 
 
     private final static String LISTAR_CONSULTA_POR_PACIENTE_SQL = "select"
-            + " c.id as consultaId, c.cpf, c.crm, c.dataconsulta"
-            + " from Consulta u"
+            + " c.id as consultaId, c.cpf, c.crm, c.dataconsulta, m.nome"
+            + " from Consulta c inner join Medico m on c.crm = m.crm"
             + " where cpf = ?";
 
     private final static String LISTAR_CONSULTA_POR_MEDICO_SQL = "select"
-            + " c.id as consultaId, c.cpf, c.crm, c.dataconsulta"
-            + " from Consulta u"
+            + " c.id as consultaId, c.cpf, c.crm, c.dataconsulta, p.nome"
+            + " from Consulta c inner join Paciente p on c.cpf = p.cpf"
             + " where crm = ?";
 
     DataSource dataSource;
@@ -70,10 +72,13 @@ public class ConsultaDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Consulta u = new Consulta();
+                    Medico m = new Medico();
                     u.setId(rs.getInt("consultaId"));
                     u.setCpf(rs.getString("cpf"));
                     u.setCrm(rs.getString("crm"));
                     u.setDataConsulta(new Date(rs.getDate("dataConsulta").getTime()));
+                    m.setNome(rs.getString("nome"));
+                    u.setMedico(m);
                     ret.add(u);                }
             }
         }
@@ -88,10 +93,13 @@ public class ConsultaDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Consulta u = new Consulta();
+                    Paciente p = new Paciente();
                     u.setId(rs.getInt("consultaId"));
                     u.setCpf(rs.getString("cpf"));
                     u.setCrm(rs.getString("crm"));
                     u.setDataConsulta(new Date(rs.getDate("dataConsulta").getTime()));
+                    p.setNome(rs.getString("nome"));
+                    u.setPaciente(p);
                     ret.add(u);                }
             }
         }
