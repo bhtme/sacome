@@ -36,7 +36,11 @@ public class MedicoDAO {
             + " from Medico u"
             + " where especialidade = ?";
 
-
+        private final static String MEDICO_VALIDAR_LOGIN_SQL = "select"
+        + " id, crm, nome, senha"
+        + " from medico"
+        + " where crm=? and senha=?";
+        
     DataSource dataSource;
 
 
@@ -102,6 +106,25 @@ public class MedicoDAO {
             }
         }
         return ret;
+    }
+    
+        public Boolean validarMedicoLogin(String crm, String senha) throws SQLException, NamingException {
+        boolean st = false;
+        try (Connection con = dataSource.getConnection();
+                          
+            PreparedStatement ps = con.prepareStatement(MEDICO_VALIDAR_LOGIN_SQL)) {
+            ps.setString(1, crm);
+            ps.setString(2, senha); 
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                st = rs.next();
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+          
+            return st;
+        }
     }
 }
 

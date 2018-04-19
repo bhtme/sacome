@@ -23,6 +23,7 @@
         </div>
         <div>
             <a href="pacienteLogin.jsp">Área do Paciente</a><br/><br>
+            <a href="medicoLogin.jsp">Área do Médico</a><br/><br>
         </div>
         <div>
             <a href="adminLogin.jsp">Login Administrador</a><br/><br>

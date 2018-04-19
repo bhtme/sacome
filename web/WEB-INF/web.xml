@@ -28,6 +28,10 @@
         <servlet-name>PacienteLoginServlet</servlet-name>
         <servlet-class>sacome.servlets.PacienteLoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MedicoLoginServlet</servlet-name>
+        <servlet-class>sacome.servlets.MedicoLoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
         <url-pattern>/AddMedicoServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>PacienteLoginServlet</servlet-name>
         <url-pattern>/PacienteLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicoLoginServlet</servlet-name>
+        <url-pattern>/MedicoLoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
