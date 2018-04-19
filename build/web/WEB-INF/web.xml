@@ -36,6 +36,10 @@
         <servlet-name>GravarConsultaServlet</servlet-name>
         <servlet-class>sacome.servlets.GravarConsultaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddConsultaServlet</servlet-name>
+        <servlet-class>sacome.servlets.AddConsultaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
         <url-pattern>/admin/addMedico</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>GravarConsultaServlet</servlet-name>
         <url-pattern>/GravarConsultaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddConsultaServlet</servlet-name>
+        <url-pattern>/AddConsultaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
