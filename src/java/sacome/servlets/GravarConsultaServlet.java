@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +47,7 @@ public class GravarConsultaServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         AddConsultaFormBean npfb = (AddConsultaFormBean) request.getSession().getAttribute("novaConsulta");
         request.getSession().removeAttribute("novaConsulta");
         
@@ -83,7 +85,11 @@ public class GravarConsultaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(GravarConsultaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -97,7 +103,11 @@ public class GravarConsultaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(GravarConsultaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
