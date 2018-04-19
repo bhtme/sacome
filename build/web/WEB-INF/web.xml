@@ -20,57 +20,29 @@
         <servlet-name>VerMedicosServlet</servlet-name>
         <servlet-class>sacome.servlets.VerMedicosServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>AdminLoginServlet</servlet-name>
-        <servlet-class>sacome.servlets.AdminLoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PacienteLoginServlet</servlet-name>
-        <servlet-class>sacome.servlets.PacienteLoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MedicoLoginServlet</servlet-name>
-        <servlet-class>sacome.servlets.MedicoLoginServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
-        <url-pattern>/admin/addMedico</url-pattern>
+        <url-pattern>/AddMedicoServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GravarMedicoServlet</servlet-name>
-        <url-pattern>/admin/gravarMedico</url-pattern>
+        <url-pattern>/GravarMedicoServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddPacienteServlet</servlet-name>
-        <url-pattern>/admin/addPaciente</url-pattern>
+        <url-pattern>/AddPacienteServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GravarPacienteServlet</servlet-name>
-        <url-pattern>/admin/gravarPaciente</url-pattern>
+        <url-pattern>/GravarPacienteServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VerMedicosServlet</servlet-name>
-        <url-pattern>/listaMedicos</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AdminLoginServlet</servlet-name>
-        <url-pattern>/admin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PacienteLoginServlet</servlet-name>
-        <url-pattern>/paciente</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MedicoLoginServlet</servlet-name>
-        <url-pattern>/medico</url-pattern>
+        <url-pattern>/VerMedicosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    <error-page>
-        <error-code>404</error-code>
-       <location>/erro.jsp</location>
-     </error-page>
 </web-app>

@@ -28,11 +28,10 @@ public class AddPacienteFormBean {
             mensagens.add("Nome não pode ser vazio!");
         }
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             sdf.parse(dataDeNascimento);
         } catch (ParseException pe) {
-           
-            mensagens.add("Data de 485929nascimento deve estar no formato dd/mm/aaaa!"+dataDeNascimento);
+            mensagens.add("Data de nascimento deve estar no formato dd/mm/aaaa!");
         }
         
         if (telefone.trim().length() == 0) {
