@@ -27,7 +27,7 @@ public class GravarPacienteServlet extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+        throws ServletException, IOException, ParseException {
         AddPacienteFormBean npfb = (AddPacienteFormBean) request.getSession().getAttribute("novoPaciente");
         request.getSession().removeAttribute("novoPaciente");
 
