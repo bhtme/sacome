@@ -19,7 +19,7 @@ import sacome.forms.AddConsultaFormBean;
  *
  * @author tulio
  */
-@WebServlet(name = "AddConsultaServlet", urlPatterns = {"/AddConsultaServlet"})
+@WebServlet(name = "AddConsultaServlet", urlPatterns = {"/paciente/addConsulta"})
 public class AddConsultaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -32,10 +32,10 @@ public class AddConsultaServlet extends HttpServlet {
             // http://commons.apache.org/beanutils/
             BeanUtils.populate(npfb, request.getParameterMap());
             request.getSession().setAttribute("novaConsulta", npfb);
-            request.getRequestDispatcher("confirmarConsulta.jsp").forward(request, response);
+            request.getRequestDispatcher("/confirmarConsulta.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
 
     }

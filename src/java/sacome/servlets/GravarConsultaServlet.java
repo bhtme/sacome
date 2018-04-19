@@ -31,7 +31,7 @@ import sacome.forms.AddPacienteFormBean;
  * @author tulio
  */
 
-@WebServlet(name = "GravarConsultaServlet", urlPatterns = {"/GravarConsultaServlet"})
+@WebServlet(name = "GravarConsultaServlet", urlPatterns = {"/paciente/gravarConsulta"})
 public class GravarConsultaServlet extends HttpServlet {
 
     @Resource(name="jdbc/sacomeDBlocal")
