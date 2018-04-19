@@ -1,30 +1,86 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<html>
-    <head>
-        <title>SACoMe</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="estilo.css" />  
-    </head>
-    <body>
-            <h1>Sistema de Agendamento de Consultas Médicas</h1><br>
-            <h2>Área de Administração</h2>
-        <div>
-            <c:if test="${requestScope.adminValid}">
-            <div>
-            <a href="addMedicoForm.jsp">Adicionar Médico</a><br/><br>
-            <a href="addPacienteForm.jsp">Adicionar Paciente</a><br/><br>
+<t:template>
+    <jsp:attribute name="title">SACoMe - Área Administrativa</jsp:attribute>
+    <jsp:body>
+        <div class="box pBox">
+            <div>Área Administrativa</div>
+            <div class="btts">
+                <a href="/sair">Terminar Sessão</a>
             </div>
-            </c:if>
-            <c:if test="${!requestScope.adminValid}">
-            <div>
-                <span>Você precisa estar logado para ver esta página!</span><br/>
-                <br/><a href="adminLogin.jsp">Login</a><br/><br>
-            </div>
-            </c:if>
         </div>
-    </body>
-</html>
+        <div class="box pBox">
+            <div>Cadastro de Médicos</div>
+            <div>
+                <c:if test="${!empty requestScope.med_mensagens}">
+                    <ul class="erro">
+                    <c:forEach items="${requestScope.med_mensagens}" var="mensagem">
+                        <li>${mensagem}</li>
+                    </c:forEach>
+                    </ul>
+                    <hr>
+                </c:if>
+                <form action="${pageContext.request.contextPath}/admin/addMedico" method="post" class="boxForm">
+                    <label for="med_crm">CRM:</label>
+                    <input id="med_crm" name="crm" type="text" value="${sessionScope.novoMedico.crm}" />
+                    <label for="med_nome">Nome:</label>
+                    <input id="med_nome" name="nome" type="text" value="${sessionScope.novoMedico.nome}" />
+                    <label for="med_senha">Senha:</label>
+                    <input id="med_senha" name="senha" type="text" value="${sessionScope.novoMedico.senha}" />
+                    <label for="med_especialidade">Especialidade:</label>
+                    <select id="med_especialidade" name="especialidade">
+                        <option value="Clínico Geral">Clínico Geral</option>
+                        <option value="Acupuntura">Acupuntura</option>
+                        <option value="Cardiologia">Cardiologia</option>
+                        <option value="Dermatologia">Dermatologia</option>
+                        <option value="Geriatria">Geriatria</option>
+                        <option value="Ginecologia">Ginecologia</option>
+                        <option value="Neurologia">Neurologia</option>
+                        <option value="Oftalmologia">Oftalmologia</option>
+                        <option value="Ortopedia">Ortopedia</option>
+                        <option value="Otorrinolaringologia">Otorrinolaringologia</option>
+                        <option value="Pediatria">Pediatria</option>    
+                        <option value="Pneumologia">Pneumologia</option>
+                        <option value="Urologia">Urologia</option>           
+                    </select>
+                    <input type="submit" value="Cadastrar Médico"/>
+                </form>
+            </div>
+        </div>
+        <div class="box pBox">
+            <div>Cadastro de Pacientes</div>
+            <div>
+                <c:if test="${!empty requestScope.pac_mensagens}">
+                    <ul class="erro">
+                    <c:forEach items="${requestScope.pac_mensagens}" var="mensagem">
+                        <li>${mensagem}</li>
+                    </c:forEach>
+                    </ul>
+                    <hr>
+                </c:if>
+                <form action="${pageContext.request.contextPath}/admin/addPaciente" method="post" class="boxForm">
+                    <label for="pac_cpf">CPF:</label>
+                    <input id="pac_cpf" name="cpf" type="text" value="${sessionScope.novoPaciente.cpf}" />
+                    <label for="pac_nome">Nome:</label>
+                    <input id="pac_nome" name="nome" type="text" value="${sessionScope.novoPaciente.nome}" />
+                    <label for="pac_senha">Senha:</label>
+                    <input id="pac_senha" name="senha" type="text" value="${sessionScope.novoPaciente.senha}" />
+                    <label for="pac_telefone">Telefone:</label>
+                    <input id="pac_telefone" name="telefone" type="text" value="${sessionScope.novoPaciente.telefone}" />
+                    <label for="pac_dataDeNascimento">Data de nascimento:</label>
+                    <input id="pac_dataDeNascimento" name="dataDeNascimento" type="date" value="${sessionScope.novoPaciente.dataDeNascimento}" />
+                    <label for="pac_sexo">Sexo:</label>
+                    <select id="pac_sexo" name="sexo">
+                        <option value="F">Feminino</option>
+                        <option value="M">Masculino</option>
+                        <option value="X">Não Especificado</option>          
+                    </select>
+                    <input type="submit" value="Cadastrar Paciente"/>
+                </form>
+            </div>
+        </div>
+    </jsp:body>
+</t:template>

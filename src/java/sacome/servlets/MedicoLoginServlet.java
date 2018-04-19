@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import sacome.dao.MedicoDAO;
 
-@WebServlet(name = "MedicoLoginServlet", urlPatterns = {"/MedicoLoginServlet"})
+@WebServlet(name = "MedicoLoginServlet", urlPatterns = {"/medico"})
 public class MedicoLoginServlet extends HttpServlet {
 
     /**
@@ -38,24 +38,39 @@ public class MedicoLoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
+            String login = request.getParameter("login");
             String crm = request.getParameter("crm");
             String senha = request.getParameter("senha");
             MedicoDAO mdao = new MedicoDAO(dataSource);           
             
-            if (mdao.validarMedicoLogin(crm, senha)){
-                request.setAttribute("docValid", true);
-                request.setAttribute("udocInvalid", false);
-                request.getRequestDispatcher("dashboardMedico.jsp").forward(request, response);
-            } else {
-                request.setAttribute("docInvalid", true);
-                request.setAttribute("docValid", false);
-                request.getRequestDispatcher("medicoLogin.jsp").forward(request, response);
+            if(login == null) {
+                String acesso = (String) request.getSession().getAttribute("acessoMedico");
+                if("ok".equals(acesso)) {
+                    request.setAttribute("docValid", true);
+                    request.setAttribute("docInvalid", false);
+                    request.getRequestDispatcher("/dashboardMedico.jsp").forward(request, response);
+                }else{
+                    request.setAttribute("docInvalid", false);
+                    request.setAttribute("docValid", false);
+                    request.getRequestDispatcher("/medicoLogin.jsp").forward(request, response);      
+                }
+            }else{
+                if (mdao.validarMedicoLogin(crm, senha)){
+                    request.getSession().setAttribute("acessoMedico", "ok");
+                    request.setAttribute("docValid", true);
+                    request.setAttribute("docInvalid", false);
+                    request.getRequestDispatcher("/dashboardMedico.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("docInvalid", true);
+                    request.setAttribute("docValid", false);
+                    request.getRequestDispatcher("/medicoLogin.jsp").forward(request, response);
+                }
             }
       
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
     }
 

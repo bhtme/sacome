@@ -29,10 +29,10 @@ public class AddPacienteServlet extends HttpServlet {
             request.getSession().setAttribute("novoPaciente", npfb);
             List<String> mensagens = npfb.validar();
             if (mensagens == null) {
-                request.getRequestDispatcher("confirmarPaciente.jsp").forward(request, response);
+                request.getRequestDispatcher("/confirmarPaciente.jsp").forward(request, response);
             } else {
-                request.setAttribute("mensagens", mensagens);
-                request.getRequestDispatcher("addPacienteForm.jsp").forward(request, response);
+                request.setAttribute("pac_mensagens", mensagens);
+                request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

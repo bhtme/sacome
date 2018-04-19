@@ -54,15 +54,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminLoginServlet</servlet-name>
-        <url-pattern>/AdminLoginServlet</url-pattern>
+        <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PacienteLoginServlet</servlet-name>
-        <url-pattern>/PacienteLoginServlet</url-pattern>
+        <url-pattern>/paciente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MedicoLoginServlet</servlet-name>
-        <url-pattern>/MedicoLoginServlet</url-pattern>
+        <url-pattern>/medico</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

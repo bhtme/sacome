@@ -44,7 +44,7 @@ public class VerMedicosServlet extends HttpServlet {
         String especialidade = request.getParameter("especialidade");
         List<Medico> todosMedicos = null;
         try {
-            if (especialidade == null) {
+            if (especialidade == null || "".equals(especialidade)) {
                 todosMedicos = mdao.listarTodosMedicos();
             } else {
                 todosMedicos = mdao.listarTodosMedicosPorEspecialidade(especialidade);

@@ -29,10 +29,10 @@ public class AddMedicoServlet extends HttpServlet {
             request.getSession().setAttribute("novoMedico", npfb);
             List<String> mensagens = npfb.validar();
             if (mensagens == null) {
-                request.getRequestDispatcher("confirmarMedico.jsp").forward(request, response);
+                request.getRequestDispatcher("/confirmarMedico.jsp").forward(request, response);
             } else {
-                request.setAttribute("mensagens", mensagens);
-                request.getRequestDispatcher("addMedicoForm.jsp").forward(request, response);
+                request.setAttribute("med_mensagens", mensagens);
+                request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
             }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());

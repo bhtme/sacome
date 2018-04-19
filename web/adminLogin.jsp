@@ -1,28 +1,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<html>
-    <head>
-        <title>SACoMe</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="estilo.css" />  
-    </head>
-    <body>
-            <h1>Sistema de Agendamento de Consultas Médicas</h1><br>
-            <h2>Área de Administração</h2>
-        <div>
-            <c:if test="${requestScope.adminInvalid}">
-                <span>Usuário ou senha inválidos.</span>
-            <hr>
-            </c:if>
-            <h3>Login</h3>
-            <form method="post" action="AdminLoginServlet">
-                Usuário:<input type="text" name="login" /><br/>
-                Senha:<input type="text" name="senha" /><br/>
-                <input type="submit" value="Login" />
-            </form>
+<t:template>
+    <jsp:attribute name="title">SACoMe - Área Administrativa</jsp:attribute>
+    <jsp:body>
+        <div class="box pBox">
+            <div>Área Administrativa</div>
+            <div>
+                <c:choose>
+                    <c:when test="${requestScope.adminInvalid}">
+                        <span>Usuário ou senha inválidos.</span>
+                    </c:when>
+                    <c:otherwise>
+                        <span>Informe seu Usuário e Senha para acessar a Área Administrativa</span>
+                    </c:otherwise>
+                </c:choose>
+                <hr>
+                <form method="post" class="boxForm" id="adminForm">
+                    <label for="usuario">Usuário:</label>
+                    <input type="text" name="usuario" id="usuario" />
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha" id="senha" />
+                    <input type="submit" value="Acessar" name="login" />
+                </form>
+            </div>
         </div>
-    </body>
-</html>
+    </jsp:body>
+</t:template>

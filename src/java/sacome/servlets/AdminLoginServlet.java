@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import sacome.dao.AdminsDAO;
 
-@WebServlet(name = "AdminLoginServlet", urlPatterns = {"/AdminLoginServlet"})
+@WebServlet(name = "AdminLoginServlet", urlPatterns = {"/admin"})
 public class AdminLoginServlet extends HttpServlet {
 
     /**
@@ -39,23 +39,38 @@ public class AdminLoginServlet extends HttpServlet {
         try {
             
             String login = request.getParameter("login");
+            String usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
             AdminsDAO adao = new AdminsDAO(dataSource);           
             
-            if (adao.validarAdminLogin(login, senha)){
-                request.setAttribute("adminValid", true);
-                request.setAttribute("adminInvalid", false);
-                request.getRequestDispatcher("dashboardAdmin.jsp").forward(request, response);
-            } else {
-                request.setAttribute("adminInvalid", true);
-                request.setAttribute("adminValid", false);
-                request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
+            if(login == null) {
+                String acesso = (String) request.getSession().getAttribute("acessoAdmin");
+                if("ok".equals(acesso)) {
+                    request.setAttribute("adminValid", true);
+                    request.setAttribute("adminInvalid", false);
+                    request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
+                }else{
+                    request.setAttribute("adminInvalid", false);
+                    request.setAttribute("adminValid", false);
+                    request.getRequestDispatcher("/adminLogin.jsp").forward(request, response);      
+                }
+            }else{
+                if (adao.validarAdminLogin(usuario, senha)){
+                    request.getSession().setAttribute("acessoAdmin", "ok");
+                    request.setAttribute("adminValid", true);
+                    request.setAttribute("adminInvalid", false);
+                    request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("adminInvalid", true);
+                    request.setAttribute("adminValid", false);
+                    request.getRequestDispatcher("/adminLogin.jsp").forward(request, response);
+                }
             }
       
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
     }
 

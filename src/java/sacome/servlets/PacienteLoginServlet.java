@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 import sacome.dao.AdminsDAO;
 import sacome.dao.PacienteDAO;
 
-@WebServlet(name = "PacienteLoginServlet", urlPatterns = {"/PacienteLoginServlet"})
+@WebServlet(name = "PacienteLoginServlet", urlPatterns = {"/paciente"})
 public class PacienteLoginServlet extends HttpServlet {
 
     /**
@@ -39,24 +39,39 @@ public class PacienteLoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
+            String login = request.getParameter("login");
             String cpf = request.getParameter("cpf");
             String senha = request.getParameter("senha");
             PacienteDAO pdao = new PacienteDAO(dataSource);           
             
-            if (pdao.validarPacienteLogin(cpf, senha)){
-                request.setAttribute("userValid", true);
-                request.setAttribute("userInvalid", false);
-                request.getRequestDispatcher("dashboardPaciente.jsp").forward(request, response);
-            } else {
-                request.setAttribute("userInvalid", true);
-                request.setAttribute("userValid", false);
-                request.getRequestDispatcher("pacienteLogin.jsp").forward(request, response);
+            if(login == null) {
+                String acesso = (String) request.getSession().getAttribute("acessoPaciente");
+                if("ok".equals(acesso)) {
+                    request.setAttribute("userValid", true);
+                    request.setAttribute("userInvalid", false);
+                    request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
+                }else{
+                    request.setAttribute("userInvalid", false);
+                    request.setAttribute("userValid", false);
+                    request.getRequestDispatcher("/pacienteLogin.jsp").forward(request, response);      
+                }
+            }else{
+                if (pdao.validarPacienteLogin(cpf, senha)){
+                   request.getSession().setAttribute("acessoPaciente", "ok");
+                   request.setAttribute("userValid", true);
+                   request.setAttribute("userInvalid", false);
+                   request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
+               } else {
+                   request.setAttribute("userInvalid", true);
+                   request.setAttribute("userValid", false);
+                   request.getRequestDispatcher("/pacienteLogin.jsp").forward(request, response);
+               }               
             }
       
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
     }
 

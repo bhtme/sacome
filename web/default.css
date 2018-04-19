@@ -44,35 +44,111 @@ div#top-bar>a {
     vertical-align: top;
 }
 
-div#btts>a {
+div.btts {
+    text-align: center;
+}
+
+div.btts>a {
     display: inline-block;
     margin: 12px 10px;
     background: #4cab60;
     padding: 12px 14px;
     color: #fff;
     text-decoration: none;
+    box-shadow: 4px 5px #ccc;
 }
 
-div#top-bar>a:hover, div#btts>a:hover {
+div#top-bar>a:hover, div.btts>a:hover, table a:hover, form.boxForm a:hover  {
     text-decoration: underline;
 }
 
-form>input {
+div.box {
+    margin-top: 20px;
+    width: 740px;
+    margin: auto auto 20px auto;
+    border: 1px solid #4cab60;
+    box-shadow: 4px 5px #ccc;
+}
+
+div.box.pBox {
+    width: 560px;
+}
+
+div.box.mBox {
+    width: 640px;
+}
+
+div.box>div:first-child {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #4cab60;
+    color: #fff;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 24px;
+    cursor: default;
+}
+
+div.box>div:last-child {
+    display: block;
+    width: 100%;
+    background: #fff;
+    text-align: left;
+    padding: 8px 10px 10px 10px;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+tr:nth-child(odd):not(:first-of-type) {
+    background: #caf2c7;
+}
+
+table a, form.boxForm a {
+    color: #419453;
+    text-decoration: none;
+}
+
+form.boxForm>label {
+    display: block;
+    margin: 3px auto;
+    width: 90%;
+}
+
+form.boxForm>input, form.boxForm>select {
     display: block;
     margin: 5px auto;
     width: 90%;
 }
 
-form>input[type="text"], form>input[type="password"] {
+form.boxForm>input[type="text"], form.boxForm>input[type="password"], 
+form.boxForm>input[type="date"], form.boxForm>select {
     background: #fff;
-    border: 1px solid #015eb0;
+    border: 1px solid #419453;
     height: 30px;
 }
 
-form>input[type="submit"] {
+form.boxForm>input[type="submit"] {
     color: #fff;
-    background: #015eb0;
+    background: #419453;
     height: 30px;
     border: 0;
     cursor: pointer;
+    font-size: 16px;
+}
+
+ul.erro {
+    margin: 0;
+    padding-left: 20px;
+}
+
+span.campo {
+    color: #419453;
+    font-weight: bold;
 }

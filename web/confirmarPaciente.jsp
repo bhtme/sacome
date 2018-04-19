@@ -1,26 +1,29 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <titleSistema de Agendamento de Consultas Médicas</title>
-        <link rel="stylesheet" type="text/css" href="default.css" />
-    </head>
-    <body>
-        <h1>Novo Paciente</h1>
-        Atenção! Deseja cadastrar no sistema?
-        <br/>
-        Verifique se todas as informações estão corretas:
-        <br/><br/>
-        CPF: ${sessionScope.novoPaciente.cpf}<br/>
-        Nome: ${sessionScope.novoPaciente.nome}<br/>
-        Senha: ${sessionScope.novoPaciente.senha}<br/>
-        Telefone: ${sessionScope.novoPaciente.telefone}<br/>
-        Nascimento: ${sessionScope.novoPaciente.dataDeNascimento}<br/>
-        Sexo: ${sessionScope.novoPaciente.sexo}<br/>
-        <br/>
-        <a href="GravarPacienteServlet">Confirmar</a>
-        <a href="addPacienteForm.jsp">Modificar</a>
-        <a href="index.jsp">Cancelar</a>
-    </body>
-</html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<t:template>
+    <jsp:attribute name="title">SACoMe - Área Administrativa</jsp:attribute>
+    <jsp:body>
+        <div class="box pBox">
+            <div>Confirmação de Cadastro</div>
+            <div>
+                Atenção! Deseja cadastrar este paciente no sistema?
+                <br/>
+                Verifique se todas as informações estão corretas:
+                <hr>
+                <span class="campo">CPF:</span> ${sessionScope.novoPaciente.cpf}<br/>
+                <span class="campo">Nome:</span> ${sessionScope.novoPaciente.nome}<br/>
+                <span class="campo">Senha:</span> ${sessionScope.novoPaciente.senha}<br/>
+                <span class="campo">Telefone:</span> ${sessionScope.novoPaciente.telefone}<br/>
+                <span class="campo">Nascimento:</span> ${sessionScope.novoPaciente.dataDeNascimento}<br/>
+                <span class="campo">Sexo:</span> ${sessionScope.novoPaciente.sexo}<br/>
+                <div class="btts">
+                    <a href="${pageContext.request.contextPath}/admin/gravarPaciente">Confirmar</a>
+                    <a href="${pageContext.request.contextPath}/admin">Alterar/Retornar</a>
+                </div>
+            </div>
+        </div>
+    </jsp:body>
+</t:template>

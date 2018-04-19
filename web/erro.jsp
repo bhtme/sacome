@@ -1,28 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SACoMe - Ocorreu um Erro</title>
-        <link rel="stylesheet" type="text/css" href="default.css" />
-        <link rel="stylesheet" type="text/css" href="erro.css" />
-    </head>
-    <body>
-        <div id="top-bar">
-            <span>Sistema de Agendamento de Consultas Médicas</span>
-            <a href="admin">acesso restrito</a>
-        </div>
-        <div id="erro">
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<t:template>
+    <jsp:body>
+        <div id="erro" class="box pBox">
             <div>Ocorreu um erro!</div>
             <div>
-                <% if(response.getStatus() == 500){ %>
-                <%=exception.getMessage() %>
-                <%}else if(response.getStatus() == 404){ %>
-                Página não encontrada
-                <%}else {%>
-                ${mensagem}
-                <%} %>
+                <c:if test="${response.getStatus() == 500}">
+                    ${exception.getMessage()}
+                </c:if>
+                <c:if test="${response.getStatus() == 404}">
+                    Página não encontrada.<br />
+                    Utilize o menu acima para retornar ao sistema
+                </c:if>
+                <c:if test="${mensagem != null}">
+                    ${mensagem}
+                </c:if>
             </div>
         </div>
-    </body>
-</html>
+    </jsp:body>
+</t:template>

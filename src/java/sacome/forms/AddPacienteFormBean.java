@@ -41,8 +41,8 @@ public class AddPacienteFormBean {
         if (sexo.trim().length() == 0){
             mensagens.add("Sexo não pode ser vazio!");
         }
-        if (!sexo.equals("m") && !sexo.equals("M") && !sexo.equals("F") && !sexo.equals("f")){
-            mensagens.add("Sexo deve ser 'M' ou 'F'");
+        if (!sexo.equals("M") && !sexo.equals("F") && !sexo.equals("X")){
+            mensagens.add("Sexo inválido");
         }
         
         //Validação CPF
