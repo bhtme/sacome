@@ -20,6 +20,18 @@
         <servlet-name>VerMedicosServlet</servlet-name>
         <servlet-class>sacome.servlets.VerMedicosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <servlet-class>sacome.servlets.AdminLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PacienteLoginServlet</servlet-name>
+        <servlet-class>sacome.servlets.PacienteLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MedicoLoginServlet</servlet-name>
+        <servlet-class>sacome.servlets.MedicoLoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddMedicoServlet</servlet-name>
         <url-pattern>/admin/addMedico</url-pattern>
@@ -39,6 +51,18 @@
     <servlet-mapping>
         <servlet-name>VerMedicosServlet</servlet-name>
         <url-pattern>/listaMedicos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/AdminLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PacienteLoginServlet</servlet-name>
+        <url-pattern>/PacienteLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicoLoginServlet</servlet-name>
+        <url-pattern>/MedicoLoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
