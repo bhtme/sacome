@@ -10,8 +10,6 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,15 +45,20 @@ public class GravarConsultaServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException {
         AddConsultaFormBean npfb = (AddConsultaFormBean) request.getSession().getAttribute("novaConsulta");
         request.getSession().removeAttribute("novaConsulta");
         
         ConsultaDAO udao = new ConsultaDAO(dataSource);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date dataConsulta = null;
-        dataConsulta = sdf.parse(npfb.getDataConsulta());
+        try {
+            dataConsulta = sdf.parse(npfb.getDataConsulta());
+        } catch (ParseException e) {
+            request.setAttribute("mensagem", e.getLocalizedMessage());
+            request.getRequestDispatcher("erro.jsp").forward(request, response);
+        }
         try {
             Consulta u = new Consulta();
             u.setCpf(npfb.getCpf());
@@ -85,11 +88,7 @@ public class GravarConsultaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(GravarConsultaServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -103,11 +102,7 @@ public class GravarConsultaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(GravarConsultaServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

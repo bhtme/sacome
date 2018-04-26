@@ -80,6 +80,14 @@
         <servlet-name>AddConsultaServlet</servlet-name>
         <url-pattern>/paciente/addConsulta</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddConsultaServlet</servlet-name>
+        <url-pattern>/AddConsultaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GravarConsultaServlet</servlet-name>
+        <url-pattern>/GravarConsultaServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

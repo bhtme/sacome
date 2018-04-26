@@ -5,10 +5,6 @@
  */
 package sacome.forms;
 
-import java.util.ArrayList;
-import java.util.List;
-import sacome.dao.ConsultaDAO;
-
 /**
  *
  * @author tulio
@@ -16,7 +12,7 @@ import sacome.dao.ConsultaDAO;
 public class AddConsultaFormBean {
     
     private String cpf, crm, dataConsulta;
-    
+
     public String getCpf() {
         return cpf;
     }
