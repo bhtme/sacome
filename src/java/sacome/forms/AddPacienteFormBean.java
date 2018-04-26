@@ -16,7 +16,15 @@ import java.util.List;
  */
 public class AddPacienteFormBean {
     
-    private String cpf, nome, senha, telefone, dataDeNascimento, sexo;
+    private String cpf, nome, senha, telefone, dataDeNascimento, dataString, sexo;
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
 
     @SuppressWarnings("empty-statement")
     public List<String> validar() {
@@ -32,7 +40,7 @@ public class AddPacienteFormBean {
             sdf.parse(dataDeNascimento);
         } catch (ParseException pe) {
            
-            mensagens.add("Data de 485929nascimento deve estar no formato dd/mm/aaaa!"+dataDeNascimento);
+            mensagens.add("Data de nascimento inválida!");
         }
         
         if (telefone.trim().length() == 0) {
@@ -47,15 +55,16 @@ public class AddPacienteFormBean {
         }
         
         //Validação CPF
-        if (cpf.length() == 11){
-            String digitos = cpf.substring(0, 9);;
-            String dvs = cpf.substring(9, 11);
+        if (cpf.length() == 14){
+            String cleanCPF = cpf.replaceAll("[.-]", "");
+            String digitos = cleanCPF.substring(0, 9);;
+            String dvs = cleanCPF.substring(9, 11);
 
             String dv1 = gerarDV(digitos);
             String dv2 = gerarDV(digitos + dv1);
 
-            if (!(dvs.equals(dv1 + dv2)) || cpf.equals("00000000000")
-                    || cpf.equals("99999999999")){
+            if (!(dvs.equals(dv1 + dv2)) || cleanCPF.equals("00000000000")
+                    || cleanCPF.equals("99999999999")){
                 mensagens.add("CPF inválido.");
             }
         } else {    
@@ -64,7 +73,7 @@ public class AddPacienteFormBean {
         
         
         
-        return (mensagens.isEmpty() ? null : mensagens);
+        return mensagens;
     }
     
     private String gerarDV(String digitos) {

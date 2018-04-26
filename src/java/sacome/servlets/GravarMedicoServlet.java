@@ -44,7 +44,7 @@ public class GravarMedicoServlet extends HttpServlet {
             request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("med_mensagens", e.getLocalizedMessage());
+            request.setAttribute("mensagem", e.getLocalizedMessage());
             request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
     }

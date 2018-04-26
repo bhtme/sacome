@@ -61,25 +61,18 @@ public class PacienteDAO {
         return u;
     }
 
-
-    public Paciente buscarPaciente(int cpf) throws SQLException, NamingException {
+    public Boolean checarCPF(String cpf) throws SQLException, NamingException {
+        Boolean ret = false;
         try (Connection con = dataSource.getConnection();
-            PreparedStatement ps = con.prepareStatement(BUSCAR_PACIENTE_SQL)) {
-            ps.setInt(1, cpf);
-
+                PreparedStatement ps = con.prepareStatement(BUSCAR_PACIENTE_SQL)) {
+            ps.setString(1, cpf);
             try (ResultSet rs = ps.executeQuery()) {
-                rs.next();
-                Paciente u = new Paciente();
-                u.setId(rs.getInt("id"));
-                u.setCpf(rs.getString("cpf"));
-                u.setNome(rs.getString("nome"));
-                u.setSenha(rs.getString("senha"));
-                u.setTelefone(rs.getString("telefone"));
-                u.setDataDeNascimento(new Date(rs.getDate("dataDeNascimento").getTime()));
-                u.setSexo(rs.getString("sexo"));
-                return u;
+                while (rs.next()) {
+                    ret = true;
+                }
             }
         }
+        return ret;
     }
     
     public Boolean validarPacienteLogin(String cpf, String senha) throws SQLException, NamingException {

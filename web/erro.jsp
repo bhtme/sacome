@@ -10,13 +10,15 @@
                 <c:if test="${response.getStatus() == 500}">
                     ${exception.getMessage()}
                 </c:if>
-                <c:if test="${response.getStatus() == 404}">
-                    Página não encontrada.<br />
-                    Utilize o menu acima para retornar ao sistema
-                </c:if>
-                <c:if test="${mensagem != null}">
-                    ${mensagem}
-                </c:if>
+                <c:choose>
+                    <c:when test="${mensagem != null}">
+                        ${mensagem}
+                    </c:when>
+                    <c:otherwise>
+                        Página não encontrada.<br />
+                        Utilize o menu acima para retornar ao sistema
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </jsp:body>

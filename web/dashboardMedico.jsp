@@ -6,9 +6,9 @@
 <t:template>
     <jsp:attribute name="title">SACoMe - Área do Médico</jsp:attribute>
     <jsp:body>
-        <div class="box pBox">
-            <div>Área do Médico</div>
-            <div class="btts">
+        <div class="box tBox">
+            <div>
+                Área do Médico
                 <a href="${pageContext.request.contextPath}/medico?sair">Terminar Sessão</a>
             </div>
         </div>
@@ -29,7 +29,7 @@
                             <tr>
                                 <td>${consulta.paciente.nome}</td>
                                 <td>${consulta.cpf}</td>
-                                <td>${consulta.dataConsulta}</td>
+                                <td>${consulta.dataString}</td>
                             </tr>
                         </c:forEach>
                     </table>

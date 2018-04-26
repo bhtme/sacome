@@ -35,6 +35,11 @@ public class MedicoDAO {
             + " u.id as medicoId, u.crm, u.nome, u.senha, u.especialidade"
             + " from Medico u"
             + " where especialidade = ?";
+    
+    private final static String BUSCAR_MEDICO_POR_CRM = "select"
+            + " u.id as medicoId, u.crm, u.nome, u.senha, u.especialidade"
+            + " from Medico u"
+            + " where crm = ?";
 
         private final static String MEDICO_VALIDAR_LOGIN_SQL = "select"
         + " id, crm, nome, senha"
@@ -67,6 +72,19 @@ public class MedicoDAO {
         return p;
     }
 
+    public Boolean checarCRM(String crm) throws SQLException, NamingException {
+        Boolean ret = false;
+        try (Connection con = dataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(BUSCAR_MEDICO_POR_CRM)) {
+            ps.setString(1, crm);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ret = true;
+                }
+            }
+        }
+        return ret;
+    }
 
     public List<Medico> listarTodosMedicos() throws SQLException, NamingException {
         List<Medico> ret = new ArrayList<>();

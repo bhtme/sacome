@@ -15,7 +15,15 @@ import sacome.dao.ConsultaDAO;
  */
 public class AddConsultaFormBean {
     
-    private String cpf, crm, dataConsulta;
+    private String cpf, crm, dataConsulta, dataString;
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
     
     public String getCpf() {
         return cpf;

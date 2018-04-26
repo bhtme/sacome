@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -51,25 +52,30 @@ public class GravarConsultaServlet extends HttpServlet {
         AddConsultaFormBean npfb = (AddConsultaFormBean) request.getSession().getAttribute("novaConsulta");
         request.getSession().removeAttribute("novaConsulta");
         
-        ConsultaDAO udao = new ConsultaDAO(dataSource);
+        String cpf = request.getParameter("cpf");
+        PacienteDAO pdao = new PacienteDAO(dataSource);
+        ConsultaDAO cdao = new ConsultaDAO(dataSource);
+        List<Consulta> todasConsultas = null;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dataConsulta = null;
         dataConsulta = sdf.parse(npfb.getDataConsulta());
         try {
-            Consulta u = new Consulta();
-            u.setCpf(npfb.getCpf());
-            u.setCrm(npfb.getCrm());
-            u.setDataConsulta(dataConsulta);
-           
-            u = udao.gravarConsulta(u);
-           
-            request.setAttribute("mensagem", "Consulta agendada com sucesso!");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            Consulta c = new Consulta();
+            c.setCpf(npfb.getCpf());
+            c.setCrm(npfb.getCrm());
+            c.setDataConsulta(dataConsulta);
+            c = cdao.gravarConsulta(c);
+            
+            cpf = (String) request.getSession().getAttribute("cpfPaciente");
+            todasConsultas = cdao.listarConsultasPorPaciente(cpf);
+            request.setAttribute("listaConsultas", todasConsultas);
+            request.setAttribute("mensagens", "Consulta agendada com sucesso!");
+            request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }
     }
 

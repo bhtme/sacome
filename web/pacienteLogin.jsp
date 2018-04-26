@@ -20,12 +20,13 @@
                 <hr>
                 <form method="post" action="${pageContext.request.contextPath}/paciente" class="boxForm" id="pacienteForm">
                     <label for="cpf">CPF:</label>
-                    <input type="text" name="cpf" id="cpf" />
+                    <input type="text" name="cpf" id="cpf" maxlength="14" />
                     <label for="senha">Senha:</label>
                     <input type="password" name="senha" id="senha" />
                     <input type="submit" value="Acessar" name="login" />
                 </form>
             </div>
         </div>
+        <script src="${pageContext.request.contextPath}/input.js" defer></script>
     </jsp:body>
 </t:template>

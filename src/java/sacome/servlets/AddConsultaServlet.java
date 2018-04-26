@@ -7,6 +7,7 @@ package sacome.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,13 +44,23 @@ public class AddConsultaServlet extends HttpServlet {
             // Apache Commons BeanUtils
             // http://commons.apache.org/beanutils/
             BeanUtils.populate(npfb, request.getParameterMap());
+            ConsultaDAO cdao = new ConsultaDAO(dataSource);         
+            List<String> mensagens = new ArrayList<>();           
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date dataConsulta = null;          
+            try {
+            dataConsulta = sdf.parse(npfb.getDataConsulta());
+            } catch (ParseException pe) {
+                mensagens.add("Data inválida.");
+                request.setAttribute("mensagens", mensagens);
+                request.getRequestDispatcher("/dashboardPaciente.jsp").forward(request, response);
+            }
+            sdf.applyPattern("dd/MM/yyyy");
+            npfb.setDataString(sdf.format(dataConsulta));
+            
             request.getSession().setAttribute("novaConsulta", npfb);
             
-            ConsultaDAO cdao = new ConsultaDAO(dataSource);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date dataConsulta = null;
-            dataConsulta = sdf.parse(npfb.getDataConsulta());
-            List<String> mensagens = new ArrayList<>();
+            
              
             List<Consulta> consultasmed = cdao.buscarConsultaMedico(npfb.getCrm(), dataConsulta);
             if(consultasmed != null){

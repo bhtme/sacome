@@ -2,12 +2,15 @@ package sacome.servlets;
 
 import java.io.IOException;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
+import sacome.dao.MedicoDAO;
 import sacome.forms.AddMedicoFormBean;
 
 /**
@@ -16,6 +19,9 @@ import sacome.forms.AddMedicoFormBean;
  */
 @WebServlet(name = "AddMedicoServlet", urlPatterns = {"/admin/addMedico"})
 public class AddMedicoServlet extends HttpServlet {
+    
+    @Resource(name="jdbc/sacomeDBlocal")
+    DataSource dataSource;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,13 +34,20 @@ public class AddMedicoServlet extends HttpServlet {
             BeanUtils.populate(npfb, request.getParameterMap());
             request.getSession().setAttribute("novoMedico", npfb);
             List<String> mensagens = npfb.validar();
-            if (mensagens == null) {
+            MedicoDAO mdao = new MedicoDAO(dataSource);
+            Boolean checkMed = mdao.checarCRM(npfb.getCrm());
+            if(checkMed){
+                mensagens.add("Já existe um médico com CRM '"+npfb.getCrm()+"' cadastrado.");
+            }
+            
+            if (mensagens.isEmpty()) {
                 request.getRequestDispatcher("/confirmarMedico.jsp").forward(request, response);
             } else {
                 request.setAttribute("med_mensagens", mensagens);
                 request.getRequestDispatcher("/dashboardAdmin.jsp").forward(request, response);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
             request.getRequestDispatcher("/erro.jsp").forward(request, response);
         }

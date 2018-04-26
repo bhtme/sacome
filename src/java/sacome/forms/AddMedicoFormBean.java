@@ -64,6 +64,6 @@ public class AddMedicoFormBean {
             mensagens.add("Especialidade não pode ser vazio!");
         }
 
-        return (mensagens.isEmpty() ? null : mensagens);
+        return mensagens;
     }
 }

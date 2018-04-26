@@ -13,9 +13,17 @@ import java.util.Date;
  */
 public class Consulta {
     private int id;
-    private String cpf, crm;
+    private String cpf, crm, dataString;
     private Date dataConsulta;
     private Medico medico;
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
 
     public Medico getMedico() {
         return medico;

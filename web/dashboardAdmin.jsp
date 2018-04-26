@@ -6,9 +6,9 @@
 <t:template>
     <jsp:attribute name="title">SACoMe - Área Administrativa</jsp:attribute>
     <jsp:body>
-        <div class="box pBox">
-            <div>Área Administrativa</div>
-            <div class="btts">
+        <div class="box tBox">
+            <div>
+                Área Administrativa
                 <a href="${pageContext.request.contextPath}/admin?sair">Terminar Sessão</a>
             </div>
         </div>
@@ -63,7 +63,7 @@
                 </c:if>
                 <form action="${pageContext.request.contextPath}/admin/addPaciente" method="post" class="boxForm">
                     <label for="pac_cpf">CPF:</label>
-                    <input id="pac_cpf" name="cpf" type="text" value="${sessionScope.novoPaciente.cpf}" />
+                    <input id="pac_cpf" name="cpf" type="text" value="${sessionScope.novoPaciente.cpf}" maxlength="14" />
                     <label for="pac_nome">Nome:</label>
                     <input id="pac_nome" name="nome" type="text" value="${sessionScope.novoPaciente.nome}" />
                     <label for="pac_senha">Senha:</label>
@@ -82,5 +82,6 @@
                 </form>
             </div>
         </div>
+        <script src="${pageContext.request.contextPath}/input.js" defer></script>
     </jsp:body>
 </t:template>

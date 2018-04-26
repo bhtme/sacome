@@ -62,7 +62,7 @@ div.btts>a {
     box-shadow: 4px 5px #ccc;
 }
 
-div#top-bar>a:hover, div.btts>a:hover, table a:hover, form.boxForm a:hover  {
+div#top-bar>a:hover, div.btts>a:hover, table a:hover, form.boxForm a:hover, div.box.tBox>div a:hover  {
     text-decoration: underline;
 }
 
@@ -72,6 +72,11 @@ div.box {
     margin: auto auto 20px auto;
     border: 1px solid #4cab60;
     box-shadow: 4px 5px #ccc;
+}
+
+div.box.tBox {
+    width: 560px;
+    margin-bottom: 12px;
 }
 
 div.box.pBox {
@@ -97,13 +102,24 @@ div.box>div:first-child {
     -moz-user-select: none;
 }
 
-div.box>div:last-child {
+div.box:not(.tBox)>div:last-child {
     display: block;
     width: 100%;
     background: #fff;
     text-align: left;
     padding: 8px 10px 10px 10px;
     font-size: 16px;
+}
+
+div.box.tBox>div a {
+    display: block;
+    float: right;
+    line-height: 40px;
+    font-size: 17px;
+    text-decoration: none;
+    color: #fff;
+    vertical-align: top;
+    margin-right: 10px;
 }
 
 table {

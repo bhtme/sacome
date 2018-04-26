@@ -17,7 +17,7 @@
                 <span class="campo">Nome:</span> ${sessionScope.novoPaciente.nome}<br/>
                 <span class="campo">Senha:</span> ${sessionScope.novoPaciente.senha}<br/>
                 <span class="campo">Telefone:</span> ${sessionScope.novoPaciente.telefone}<br/>
-                <span class="campo">Nascimento:</span> ${sessionScope.novoPaciente.dataDeNascimento}<br/>
+                <span class="campo">Nascimento:</span> ${sessionScope.novoPaciente.dataString}<br/>
                 <span class="campo">Sexo:</span> ${sessionScope.novoPaciente.sexo}<br/>
                 <div class="btts">
                     <a href="${pageContext.request.contextPath}/admin/gravarPaciente">Confirmar</a>

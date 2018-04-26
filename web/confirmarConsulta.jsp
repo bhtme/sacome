@@ -15,7 +15,7 @@
                 <hr>
                 <span class="campo">CPF:</span> ${sessionScope.novaConsulta.cpf}<br/>
                 <span class="campo">CRM:</span> ${sessionScope.novaConsulta.crm}<br/>
-                <span class="campo">Data </span> ${sessionScope.novaConsulta.dataConsulta}<br/>
+                <span class="campo">Data:</span> ${sessionScope.novaConsulta.dataString}<br/>
                 <div class="btts">
                     <a href="${pageContext.request.contextPath}/paciente/gravarConsulta">Confirmar</a>
                     <a href="${pageContext.request.contextPath}/paciente">Alterar/Retornar</a>
